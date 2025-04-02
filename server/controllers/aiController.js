@@ -1,5 +1,5 @@
 import OpenAI from "openai";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -7,20 +7,23 @@ const openai = new OpenAI({
   apiKey: process.env.APIKEY,
 });
 
-export const getaiImage = async(req,res) => {
+export const getaiImage = async (req, res) => {
+  
   try{
-    const completion = openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      store: true,
-      messages: [
-        {"role": "user", "content": "write a haiku about ai"},
-      ],
-    });
-    res.json({response: completion.choices[0].message.content});
-
+  const { content } = req.body;
+  if(!content){
+    return res.status(400).json({error: "content is required"});
   }
-  catch(error){
+  const response = await openai.images.generate({
+    model: "dall-e-2",
+    prompt: content,
+    n: 1,
+    size: "1024x1024",
+  })
+  const imageURL = response.data[0].url;
+  console.log("generated AI image URL:", imageURl);
+  }catch (error) {
     console.error(error);
-    res.status(500).json({error: "something went wrong"});
+    res.status(500).json({ error: "something went wrong" });
   }
-}
+};

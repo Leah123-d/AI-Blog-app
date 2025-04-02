@@ -30,6 +30,7 @@ CREATE TABLE public.posts (
     content VARCHAR(100),
     favorite BOOLEAN NOT NULL,
     comments VARCHAR(255),
+    post_image VARCHAR,
     created_at timestamp NOT NULL DEFAULT NOW(),
     updated_on timestamp default CURRENT_TIMESTAMP not null
 
@@ -51,12 +52,12 @@ CREATE TABLE public.socials (
 --
 -- Data for Name: posts; Type: TABLE DATA; Schema: public; Owner: -
 --
-INSERT INTO public.posts (author, title, content, favorite, comments)
+INSERT INTO public.posts (author, title, content, favorite, comments,post_image)
 VALUES 
-    ('Allegra', 'Treat yourself: The art of textiles', 'content','false','great summary of content!'),
-    ('Toby', 'Purring: How to Heal', 'purrs can heal cited by a study','true',''),
-    ('Cassie', 'TBD', 'TBD','false','TBD'),
-    ('Target', 'TBD', 'TBD','false','TBD');
+    ('Allegra', 'Treat yourself: The art of textiles', 'content','false','great summary of content!',''),
+    ('Toby', 'Purring: How to Heal', 'purrs can heal cited by a study','true','',''),
+    ('Cassie', 'TBD', 'TBD','false','TBD',''),
+    ('Target', 'TBD', 'TBD','false','TBD','');
 
 
 --
