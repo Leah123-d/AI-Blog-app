@@ -12,7 +12,7 @@ import{
 const router = express.Router();
 
 router.get("/search/:author",searchPosts);
-router.get("socials/:author",getSocials);
+router.get("/socials/:author",getSocials);
 router.get("/:author", getPost);
 router.get("/", getPosts);
 router.post("/", createPost);

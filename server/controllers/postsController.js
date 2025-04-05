@@ -87,11 +87,11 @@ export const getSocials = async(req, res) => {
   const { author } = req.params;
   
   try{
-    const result = await dbConnection.query(`SELECT posts.author, soicals.twitter, socials.youtube, socials.linkedIn,
+    const result = await dbConnection.query(`SELECT posts.author, socials.twitter, socials.youtube, socials.linkedIn,
                                             socials.instagram 
                                             FROM posts 
-                                            INNER JOIN socials 
-                                            posts.author 
+                                            INNER JOIN socials ON
+                                            posts.author = socials.author
                                             WHERE socials.author = $1`, [author]);
     if(result.rows.length === 0){
       return res.send({ "error": "socials not found" });
