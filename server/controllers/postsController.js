@@ -26,12 +26,12 @@ export const getPosts = async(req,res) => {
 }
 
 export const createPost = async(req,res) => {
-  const { author, title, content, favorite, comments } = req.body;
+  const { author, title, content, favorite, comments, post_image } = req.body;
   try{
     const result = await dbConnection.query(`INSERT INTO posts 
-                                              (author, title, content, favorite, comments) 
-                                              VALUES ($1, $2, $3, $4, $5) RETURNING *`,
-                                              [author, title, content, favorite, comments]);
+                                              (author, title, content, favorite, comments, post_image) 
+                                              VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
+                                              [author, title, content, favorite, comments, post_image]);
 
     res.json({ message:`new post ${result.rows[0].author} was added`})
     }catch (error) {
