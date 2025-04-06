@@ -1,20 +1,21 @@
+import { Outlet, Link } from "react-router-dom";
+
 function NavBar() {
   return (
-    
-    <div className="topnav">
+    <nav className="topnav">
       <h1 className="title">Code Leə </h1>
-      <a className="active" href="#home">
-        Home 
-      </a>
-      <a href="#news">Posts</a>
-      <a href="#contact">Create a Post</a>
-      <div className="topnav-right">
-        <a><input type="date"/></a>
-        <a href="#search">Search</a>
-        <a href="#about">About</a>
-      </div>
-      
-    </div>
+      <ul>
+        <li className="active">
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/posts">Posts</Link>
+        </li>
+        <li>
+          <Link to="/create">Create a Post</Link>
+        </li>
+      </ul>
+    </nav>
   );
 }
 
