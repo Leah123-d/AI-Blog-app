@@ -1,5 +1,7 @@
 //To-do: abstract the content portion to be an update with the image 
-//
+//When creating a post have a time out/loading to control the image time generating
+//disable button while image is generate to prevent too many calls
+//is there a better to handle this in the back end?
 
 import { useReducer, useRef } from "react";
 import Editor, { 

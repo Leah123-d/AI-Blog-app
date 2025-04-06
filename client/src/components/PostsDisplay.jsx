@@ -1,4 +1,4 @@
-function PostsDisplay({ posts, fetchPosts }) {
+function PostsDisplay({ posts, fetchPosts, handleViewPost }) {
   return (
     <div className="posts-container">
       <div>
@@ -13,13 +13,11 @@ function PostsDisplay({ posts, fetchPosts }) {
           <div key={post.id}>
             <p>{post.author}</p>
             <p>{post.title}</p>
-            <p>{post.content}</p>
-            <p>{post.created_at}</p>
-            {/* <button onClick={async () => {await fetchPosts(post.author);
-                                              //  handleViewPost(post.author);
+            <button onClick={async () => {await fetchPosts(post.author);
+                                               handleViewPost(post.author);
                                                }}
-                                               >view more
-            </button> */}
+                                               >read post
+            </button>
           </div>
         ))
       ) : (

@@ -5,10 +5,11 @@
   text-align: center;
 }
 
-
 .topnav {
   background-color: #efb195;
   overflow: hidden;
+  border: 2px solid #404972 ;
+  border-radius: 15px;
 }
 
 .topnav li {
@@ -17,7 +18,7 @@
 
 .topnav a {
 float: left;
-color: #00452b;
+color: #404972;
 text-align: center;
 padding: 14px 16px;
 text-decoration: none;
@@ -35,8 +36,16 @@ color: white;
 }
 
 .title{
-  color: #344d49;
+  color: #404972;
   font-size: 40px;
+}
+
+button{
+    background-color: white;
+    color: black;
+    border: 2px solid #404972;
+    border-radius: 4px;
+    padding: 4px 15px;
 }
 
 /* .formContainer{

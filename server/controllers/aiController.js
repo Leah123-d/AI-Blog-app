@@ -21,7 +21,7 @@ export const getaiImage = async (req, res) => {
     size: "1024x1024",
   })
   const imageURL = response.data[0].url;
-  console.log("generated AI image URL:", imageURl);
+  console.log("generated AI image URL:", imageURL);
   }catch (error) {
     console.error(error);
     res.status(500).json({ error: "something went wrong" });

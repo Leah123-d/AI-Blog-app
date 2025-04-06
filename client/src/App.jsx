@@ -1,5 +1,8 @@
 //To-Do:
 //build routes for links to go to specific pages
+//add google font, space grotesque
+//review how to load the view post component, loading pages with decendents(TH)
+//review socials route
 
 import ReactDOM from "react-dom/client";
 import { Routes, Route } from "react-router-dom";
@@ -19,6 +22,13 @@ export function App() {
   const [posts, setPosts] = useState([]);
   const [errorHandle, setErrorHandle] = useState(false);
   const [imagePost, setImagePost] = useState(null);
+  const [isReadPostOpen, setIsReadPostOpen] = useState(false);
+  const [socials, setSocials] = useState(null);
+
+  const handleViewPost = (author) => {
+    fetchSocials(author);
+    setIsReadPostOpen(true);
+  }
 
   const fetchPosts = async (author) => {
     try {
@@ -42,6 +52,23 @@ export function App() {
       return [];
     }
   };
+  const fetchSocials = async (author) =>{
+    try {
+      const res = await fetch(`/posts/socials/${author}`);
+
+      if(!res.ok) throw new Error("Failed to fetch socials");
+
+      const data = await res.json();
+      console.log("fetched data: ", data);
+
+      setSocials(data);
+    } catch(error) {
+      console.error("Error fetching socials: ", error);
+      setErrorHandle(true);
+      return [];
+    }
+
+  }
   const fetchaiImage = async (content) => {
     try {
       const res = await fetch(`/ai/getaiImage`, {
@@ -104,17 +131,18 @@ export function App() {
   return (
     <div className="appContainer">
       <NavBar />
+      {/* <ViewPost findPost={findPost} deletePost={deletePost} setIsReadPostOpen={setIsReadPostOpen} isReadPostOpen={isReadPostOpen}/> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
           path="posts"
-          element={<Posts posts={posts} fetchPosts={fetchPosts} />}
+          element={<Posts posts={posts} fetchPosts={fetchPosts} handleViewPost={handleViewPost} />}
         />
         <Route
           path="create"
           element={<CreateNewPost createNewPost={createNewPost} />}
         />
-        <Route path="view" element={<ViewPost />} />
+        <Route path="view" element={<ViewPost findPost={findPost} deletePost={deletePost} setIsReadPostOpen={setIsReadPostOpen} isReadPostOpen={isReadPostOpen} socials={socials}/>} />
         <Route path="*" element={<ErrorHandle />} />
       </Routes>
     </div>
