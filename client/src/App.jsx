@@ -1,7 +1,5 @@
 //To-Do:
-//build routes for links to go to specific pages
 //add google font, space grotesque
-//review how to load the view post component, loading pages with decendents(TH)
 //review socials route
 
 import ReactDOM from "react-dom/client";
@@ -25,9 +23,10 @@ export function App() {
   const [isReadPostOpen, setIsReadPostOpen] = useState(false);
   const [socials, setSocials] = useState(null);
 
-  const handleViewPost = (author) => {
+  const handleViewPost = (author,content) => {
     fetchSocials(author);
     setIsReadPostOpen(true);
+    fetchaiImage(content);
   }
 
   const fetchPosts = async (author) => {
@@ -86,7 +85,7 @@ export function App() {
 
       setImagePost(data);
     } catch (error) {
-      console.error("Error fetching starsign: ", error);
+      console.error("Error fetching fetching AI image: ", error);
       setErrorHandle(true);
       return [];
     }
@@ -125,13 +124,12 @@ export function App() {
   };
 
   useEffect(() => {
-    fetchPosts();
+    fetchPosts();    
   }, []);
 
   return (
     <div className="appContainer">
       <NavBar />
-      {/* <ViewPost findPost={findPost} deletePost={deletePost} setIsReadPostOpen={setIsReadPostOpen} isReadPostOpen={isReadPostOpen}/> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -142,7 +140,7 @@ export function App() {
           path="create"
           element={<CreateNewPost createNewPost={createNewPost} />}
         />
-        <Route path="view" element={<ViewPost findPost={findPost} deletePost={deletePost} setIsReadPostOpen={setIsReadPostOpen} isReadPostOpen={isReadPostOpen} socials={socials}/>} />
+        <Route path="view" element={<ViewPost findPost={findPost} deletePost={deletePost} setIsReadPostOpen={setIsReadPostOpen} isReadPostOpen={isReadPostOpen} socials={socials} imagePost={imagePost}/>} />
         <Route path="*" element={<ErrorHandle />} />
       </Routes>
     </div>

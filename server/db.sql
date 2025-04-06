@@ -31,6 +31,7 @@ CREATE TABLE public.posts (
     favorite BOOLEAN NOT NULL,
     comments VARCHAR(255),
     post_image VARCHAR,
+    post_image_2 VARCHAR,
     created_at timestamp NOT NULL DEFAULT NOW(),
     updated_on timestamp default CURRENT_TIMESTAMP not null
 

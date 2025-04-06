@@ -1,4 +1,8 @@
+import { useNavigate } from "react-router-dom";
+
 function PostsDisplay({ posts, fetchPosts, handleViewPost }) {
+  const navigate = useNavigate();
+  
   return (
     <div className="posts-container">
       <div>
@@ -14,7 +18,8 @@ function PostsDisplay({ posts, fetchPosts, handleViewPost }) {
             <p>{post.author}</p>
             <p>{post.title}</p>
             <button onClick={async () => {await fetchPosts(post.author);
-                                               handleViewPost(post.author);
+                                               handleViewPost(post.author,post.content);
+                                                navigate("/view");
                                                }}
                                                >read post
             </button>

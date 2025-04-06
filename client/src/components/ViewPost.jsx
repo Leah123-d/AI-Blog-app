@@ -3,6 +3,8 @@
 //can make if statements or swtich case for the different icons linked to the author's URLs
 //delete can be adjusted to delete the image only and have the option to generate a new one
 //limit the delete to once every 5 hours? 
+//not showing up with route need to fix
+//might need to abstract some functions to make this component reuseable? 
 
 import { useState } from "react";
 import { TfiTrash } from "react-icons/tfi";
@@ -10,7 +12,7 @@ import { SlPencil } from "react-icons/sl";
 import { IoClose } from "react-icons/io5";
 import { MdDoneOutline } from "react-icons/md";
 
-function ViewPost({ findPost, deletePost, isReadPostOpen, setIsReadPostOpen }) {
+function ViewPost({ findPost, deletePost, isReadPostOpen, setIsReadPostOpen, imagePost }) {
   const [editContent, setEditContent] = useState("");
   const [isEditOpen, setisEditOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -62,7 +64,7 @@ function ViewPost({ findPost, deletePost, isReadPostOpen, setIsReadPostOpen }) {
           </h1>
           {/* placeholder for image, adjust to embed AI image */}
           {/* replace src to dynmically render with AI image */}
-          <img src="https://picsum.photos/seed/picsum/200/300" alt="Notebook" style={{width:100}} />
+          <img src={imagePost} alt="Notebook" style={{width:100}} />
           <div className="content">
             <h1>{post.title}</h1>
             <p>{post.cotent}</p>

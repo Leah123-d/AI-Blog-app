@@ -2,6 +2,8 @@
 //When creating a post have a time out/loading to control the image time generating
 //disable button while image is generate to prevent too many calls
 //is there a better to handle this in the back end?
+//how to build a editor with the rich text editor 
+//may need to break up the process into multiple components 
 
 import { useReducer, useRef } from "react";
 import Editor, { 

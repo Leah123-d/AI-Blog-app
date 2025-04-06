@@ -15,7 +15,7 @@ export const getaiImage = async (req, res) => {
     return res.status(400).json({error: "content is required"});
   }
   const response = await openai.images.generate({
-    model: "dall-e-2",
+    model: "dall-e-3",
     prompt: content,
     n: 1,
     size: "1024x1024",
