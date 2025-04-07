@@ -47,6 +47,7 @@ CREATE DATABASE myblog
 \conninfo
 `````````
 
+<!-- Following these instructions, I am not seeing server/sample.env to set things up -->
 
 ### Database setup: 
 At the path server/sample.env
