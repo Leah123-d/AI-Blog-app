@@ -9,10 +9,6 @@ export default defineConfig({
       '/posts': {
         target: 'http://localhost:3000',
         changeOrigin: true
-      },
-      '/ai': {
-        target: 'http://localhost:3000',
-        changeOrigin: true
       }
     }
   }

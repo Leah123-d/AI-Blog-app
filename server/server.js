@@ -2,7 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import bodyParser from 'body-parser';
 import postsRoute from './routers/postsRoute.js'
-import aiRoute from './routers/aiRoute.js'
+
 
 const app = express();
 dotenv.config();
@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 
 //to read the tables
 app.use('/posts', postsRoute); 
-app.use('/ai', aiRoute); 
+
 
 app.get('/', (req,res) => res.send("Hello! This is the homepage!")); //test connection to the home page
 

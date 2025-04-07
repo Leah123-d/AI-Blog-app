@@ -12,7 +12,7 @@ import { SlPencil } from "react-icons/sl";
 import { IoClose } from "react-icons/io5";
 import { MdDoneOutline } from "react-icons/md";
 
-function ViewPost({ findPost, deletePost, isReadPostOpen, setIsReadPostOpen, imagePost }) {
+function ViewPost({ findPost, deletePost, isReadPostOpen, setIsReadPostOpen }) {
   const [editContent, setEditContent] = useState("");
   const [isEditOpen, setisEditOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -64,7 +64,8 @@ function ViewPost({ findPost, deletePost, isReadPostOpen, setIsReadPostOpen, ima
           </h1>
           {/* placeholder for image, adjust to embed AI image */}
           {/* replace src to dynmically render with AI image */}
-          <img src={imagePost} alt="Notebook" style={{width:100}} />
+          {/* need a conditional here, if the column is empty present a button to generate an image */}
+          <img src={post.post_image ? post.post_image : "https://picsum.photos/1200/800"} alt="ai generated image" style={{width:700}} />
           <div className="content">
             <h1>{post.title}</h1>
             <p>{post.cotent}</p>

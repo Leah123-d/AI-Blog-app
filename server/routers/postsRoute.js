@@ -6,7 +6,8 @@ import{
   updatePost,
   deletePost,
   searchPosts,
-  getSocials
+  getSocials,
+  generateANDSavePostImage,
 } from '../controllers/postsController.js';
 
 const router = express.Router();
@@ -15,6 +16,7 @@ router.get("/search/:author",searchPosts);
 router.get("/socials/:author",getSocials);
 router.get("/:author", getPost);
 router.get("/", getPosts);
+router.put("/:id/image", generateANDSavePostImage);
 router.post("/", createPost);
 router.put("/:author", updatePost);
 router.delete("/:author", deletePost);

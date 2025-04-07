@@ -1,4 +1,13 @@
 import dbConnection from '../db-connection.js';
+import OpenAI from "openai";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+const openai = new OpenAI({
+  apiKey: process.env.APIKEY,
+});
+
 
 export const getPost = async(req,res) => {
   const { author } = req.params;
@@ -41,9 +50,10 @@ export const createPost = async(req,res) => {
 
 export const updatePost = async(req,res) =>{
   const { author } = req.params; 
-  const { content } = req.body; 
-  const { title } = req.body; 
-  const { favorite } = req.body;
+  const { content, title, favorite } = req.body; 
+
+  const favoriteValue = favorite !== undefined ? favorite : false;
+
   try{
     const result = await dbConnection.query(`UPDATE posts 
                                             SET 
@@ -102,4 +112,32 @@ export const getSocials = async(req, res) => {
   }
 
 }
+
+export const generateANDSavePostImage = async (req, res) => {
+  const { id } = req.params;
+  const { content } = req.body;
+  
+  if(!content){
+    return res.status(400).json({error: "content is required"});
+  }
+
+  try{
+  const response = await openai.images.generate({
+    model: "dall-e-3",
+    prompt: content,
+    n: 1,
+    size: "1024x1024",
+  })
+  const imageURL = response.data[0].url;
+  console.log("generated AI image URL:", imageURL);
+  
+  await dbConnection.query(`UPDATE posts SET post_image = $1 WHERE id = $2`, [imageURL, id]); 
+
+  res.status(200).json({ imageURL })
+  }catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "something went wrong" });
+  }
+};
+
 
