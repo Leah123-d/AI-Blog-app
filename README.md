@@ -95,6 +95,7 @@ For Frontend
 
 
 ## Project Preview: 
+![ai-blog-app](https://github.com/user-attachments/assets/1700108a-618b-4706-a690-7aa387e360d4)
 
 
 
