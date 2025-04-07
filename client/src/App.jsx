@@ -22,6 +22,7 @@ export function App() {
   const [imagePost, setImagePost] = useState(null);
   const [isReadPostOpen, setIsReadPostOpen] = useState(false);
   const [socials, setSocials] = useState(null);
+  const [searchPost, setSearchPost] = useState(null);
 
   const handleViewPost = (author) => {
     fetchSocials(author);
@@ -71,6 +72,22 @@ export function App() {
       return [];
     }
   };
+  const fetchPostSearch = async (created_at) => {
+    try {
+      const res = await fetch(`/posts/search/${created_at}`);
+
+      if (!res.ok) throw new Error("Failed to fetch search post");
+
+      const data = await res.json();
+      console.log("fetched data: ", data);
+
+      setSearchPost(data);
+    } catch (error) {
+      console.error("Error fetching socials: ", error);
+      setErrorHandle(true);
+      return [];
+    }
+  }
   //use this route when generating a new image or a secondary image
   const handleGenerateImage = async (findPost) => {
 
@@ -154,6 +171,7 @@ export function App() {
               posts={posts}
               fetchPosts={fetchPosts}
               handleViewPost={handleViewPost}
+              fetchPostSearch={fetchPostSearch}
             />
           }
         />

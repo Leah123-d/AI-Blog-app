@@ -81,9 +81,9 @@ export const deletePost = async(req,res) => {
 }
 
 export const searchPosts = async(req,res) => {
-  const { author } = req.params;
+  const { created_at } = req.body;
   try{
-  const result = await dbConnection.query(`SELECT * FROM posts WHERE author ILIKE  $1`, [`%${author}%`]);
+  const result = await dbConnection.query(`SELECT * FROM posts WHERE created_at ILIKE  $1`, [`%${created_at}%`]);
   if(result.rowCount === 0){
     return res.send( { "error": "posts not found" } );
   }
