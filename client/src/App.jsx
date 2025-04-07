@@ -23,6 +23,7 @@ export function App() {
   const [isReadPostOpen, setIsReadPostOpen] = useState(false);
   const [socials, setSocials] = useState(null);
   const [searchPost, setSearchPost] = useState(null);
+  const [searchDate, setSearchDate] = useState("");
 
   const handleViewPost = (author) => {
     fetchSocials(author);
@@ -31,8 +32,14 @@ export function App() {
     if (findPost && !findPost.post_image) {
       handleGenerateImage(findPost);
     }
-    
   };
+  const handleSearchDate = (e) =>{
+    setSearchDate(e.target.value);
+  }
+  const handleSearchReset = () => {
+    setSearchDate('');
+    setSearchPost(null);
+  }
   const fetchPosts = async (author) => {
     try {
       const url = author ? `/posts/${author}` : "/posts";
@@ -72,9 +79,9 @@ export function App() {
       return [];
     }
   };
-  const fetchPostSearch = async (created_at) => {
+  const fetchPostSearch = async (searchDate) => {
     try {
-      const res = await fetch(`/posts/search/${created_at}`);
+      const res = await fetch(`/posts/search/${searchDate}`);
 
       if (!res.ok) throw new Error("Failed to fetch search post");
 
@@ -88,7 +95,6 @@ export function App() {
       return [];
     }
   }
-  //use this route when generating a new image or a secondary image
   const handleGenerateImage = async (findPost) => {
 
     if(!findPost?.id){
@@ -154,7 +160,6 @@ export function App() {
       setErrorHandle(true);
     }
   };
-
   useEffect(() => {
     fetchPosts();
   }, []);
@@ -172,6 +177,10 @@ export function App() {
               fetchPosts={fetchPosts}
               handleViewPost={handleViewPost}
               fetchPostSearch={fetchPostSearch}
+              searchDate={searchDate}
+              handleSearchDate={handleSearchDate}
+              searchPost={searchPost}
+              handleSearchReset={handleSearchReset}
             />
           }
         />
