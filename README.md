@@ -54,6 +54,11 @@ At the path server/sample.env
 2. create a new .env file and paste the information from the sample there 
 3. enter your own database information into this file
 
+### API Key setup: 
+1. Sign-up for an [Open AI account](https://auth.openai.com/log-in)
+2. During the sign-up process you'll be provided an API key 
+3. Copy the key and paste it in your .env file created with the database setup. 
+
 
 ### How to run:
 
@@ -83,9 +88,9 @@ For Frontend
 
 
 ## Future Implementation: 
-
-
-
+- [ ] update how image are handled. Allow the images to be stored with cloud hosting to prevent authorization issues. 
+- [ ] add editable HTML or rich text editor to customize posts
+- [ ] update page redirects for smoother transitions between components
 
 
 
