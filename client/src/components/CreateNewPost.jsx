@@ -1,6 +1,4 @@
-//To-do: 
-//conditional render image portion, send the data to the post route to update URL
-//have a button to view post or click home
+import { useNavigate } from "react-router-dom";
 
 import { useReducer, useRef } from "react";
 
@@ -29,8 +27,9 @@ function formReducer(state, action) {
 }
 
 function CreateNewPost({ createNewPost }) {
-  const [formState, dispatchForm] = useReducer(formReducer, initialState); //dispatch to our reducer function
-  //form is being changed dynamically in formState
+  const navigate = useNavigate();
+
+  const [formState, dispatchForm] = useReducer(formReducer, initialState);
   const formRef = useRef(null);
 
   const onSubmit = (e) => {
@@ -46,6 +45,8 @@ function CreateNewPost({ createNewPost }) {
       type: "Reset",
     });
     formRef.current.reset();
+
+    navigate("/posts");
   };
 
   function formChange(e) {

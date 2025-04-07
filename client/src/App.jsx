@@ -73,9 +73,7 @@ export function App() {
   };
   //use this route when generating a new image or a secondary image
   const handleGenerateImage = async (findPost) => {
-    if (findPost?.post_image != null){
-      return;
-    }
+
     if(!findPost?.id){
       console.error("no post id found cannot fetch image");
       return;
@@ -93,10 +91,7 @@ export function App() {
 
       const data = await res.json();
       console.log("generated image data: ", data);
-
-      setFindPost(prevPost => ({...prevPost, post_image: data.post_image}));
-      //if the post does not have an image
-      //AI will generate one and we will re-fetch the post to view the image
+      
     } catch (error) {
       console.error("Error fetching fetching AI image: ", error);
       setErrorHandle(true);
@@ -108,11 +103,14 @@ export function App() {
     console.log("post submitted:", formData);
 
     try {
-      const response = await fetch("/posts", {
+      await fetch("/posts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+      const response = await fetch('/posts');
+      const data = await response.json();
+      setPosts(data);
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       }
@@ -125,7 +123,11 @@ export function App() {
     console.log("Deleting contact with ID:", author);
     try {
       const url = `/posts/${author}`;
-      const response = await fetch(url, { method: "DELETE" });
+      await fetch(url, { method: "DELETE" });
+
+      const response = await fetch('/posts');
+      const data = await response.json();
+      setPosts(data);
       if (!response.ok) {
         throw new Error("something went wrong");
       }

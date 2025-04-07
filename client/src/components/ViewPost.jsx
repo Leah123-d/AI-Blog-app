@@ -1,10 +1,11 @@
 //to-do:
 //add display for socials, if column for socials is not null display the socials icon
 //can make if statements or swtich case for the different icons linked to the author's URLs
-//delete can be adjusted to delete the image only and have the option to generate a new one
 //limit the delete to once every 5 hours? 
-//not showing up with route need to fix
-//might need to abstract some functions to make this component reuseable? 
+//add loading state- animation with your AI image is generating 
+
+import { useNavigate } from "react-router-dom";
+
 
 import { useState } from "react";
 import { TfiTrash } from "react-icons/tfi";
@@ -13,6 +14,8 @@ import { IoClose } from "react-icons/io5";
 import { MdDoneOutline } from "react-icons/md";
 
 function ViewPost({ authorPosts, deletePost, isReadPostOpen, setIsReadPostOpen }) {
+  const navigate = useNavigate();
+
   const [editContent, setEditContent] = useState("");
   const [isEditOpen, setisEditOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
@@ -89,8 +92,10 @@ function ViewPost({ authorPosts, deletePost, isReadPostOpen, setIsReadPostOpen }
           )}
           <button
             onClick={() => {
-              if (post?.author) {
+              if (post?.author) {{
                 deletePost(post.author);
+                navigate("/posts");
+              }
               } else {
                 console.error("post author is undefined");
               }
@@ -98,7 +103,7 @@ function ViewPost({ authorPosts, deletePost, isReadPostOpen, setIsReadPostOpen }
           >
             <TfiTrash />
           </button>
-          <button onClick={() => setIsReadPostOpen(false)}>
+          <button onClick={() => {setIsReadPostOpen(false); navigate("/posts");}}>
             <IoClose />
           </button>
         </div>
