@@ -16,7 +16,7 @@ router.get("/search/:author",searchPosts);
 router.get("/socials/:author",getSocials);
 router.get("/:author", getPost);
 router.get("/", getPosts);
-router.put("/:id/image", generateANDSavePostImage);
+router.post("/:id/image", generateANDSavePostImage);
 router.post("/", createPost);
 router.put("/:author", updatePost);
 router.delete("/:author", deletePost);

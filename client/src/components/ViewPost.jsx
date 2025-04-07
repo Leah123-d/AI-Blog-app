@@ -12,12 +12,12 @@ import { SlPencil } from "react-icons/sl";
 import { IoClose } from "react-icons/io5";
 import { MdDoneOutline } from "react-icons/md";
 
-function ViewPost({ findPost, deletePost, isReadPostOpen, setIsReadPostOpen }) {
+function ViewPost({ authorPosts, deletePost, isReadPostOpen, setIsReadPostOpen }) {
   const [editContent, setEditContent] = useState("");
   const [isEditOpen, setisEditOpen] = useState(false);
   const [selectedPost, setSelectedPost] = useState(null);
 
-  if (!findPost || findPost.length === 0) {
+  if (!authorPosts || authorPosts.length === 0) {
     return;
   }
   const handleEditClick = (post) => {
@@ -49,7 +49,7 @@ function ViewPost({ findPost, deletePost, isReadPostOpen, setIsReadPostOpen }) {
 
   return isReadPostOpen ? (
     <div className="container">
-      {findPost.map((post) => (
+      {authorPosts.map((post) => (
         <div key={post.id}>
           <h1>
             <span className="icon">

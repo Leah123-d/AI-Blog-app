@@ -131,7 +131,7 @@ export const generateANDSavePostImage = async (req, res) => {
   const imageURL = response.data[0].url;
   console.log("generated AI image URL:", imageURL);
   
-  await dbConnection.query(`UPDATE posts SET post_image = $1 WHERE id = $2`, [imageURL, id]); 
+  // await dbConnection.query(`UPDATE posts SET post_image = $1 WHERE id = $2 RETURNING *`, [imageURL, id]); 
 
   res.status(200).json({ imageURL })
   }catch (error) {

@@ -15,7 +15,8 @@ import Posts from "./components/PostsDisplay";
 import ViewPost from "./components/ViewPost";
 
 export function App() {
-  const [findPost, setFindPost] = useState([]);
+  const [findPost, setFindPost] = useState(null);
+  const [authorPosts, setAuthorPosts] = useState([])
   const [posts, setPosts] = useState([]);
   const [errorHandle, setErrorHandle] = useState(false);
   const [imagePost, setImagePost] = useState(null);
@@ -31,7 +32,6 @@ export function App() {
     }
     
   };
-
   const fetchPosts = async (author) => {
     try {
       const url = author ? `/posts/${author}` : "/posts";
@@ -43,7 +43,8 @@ export function App() {
       console.log("fetched posts: ", data);
 
       if (author) {
-        setFindPost(data);
+        setAuthorPosts(data);
+        setFindPost(data[0]);
         return data;
       } else {
         setPosts(data);
@@ -70,20 +71,22 @@ export function App() {
       return [];
     }
   };
-
   //use this route when generating a new image or a secondary image
-  const handleGenerateImage = async (post) => {
-    if (post?.post_image != ""){
+  const handleGenerateImage = async (findPost) => {
+    if (findPost?.post_image != null){
       return;
-    } 
-
+    }
+    if(!findPost?.id){
+      console.error("no post id found cannot fetch image");
+      return;
+    }
     try {
-      const res = await fetch(`/posts/${post.id}/image`, {
+      const res = await fetch(`/posts/${findPost.id}/image`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ content: post.content }),
+        body: JSON.stringify({ content: findPost.content }),
       });
 
       if (!res.ok) throw new Error("Failed to generate image");
@@ -102,7 +105,7 @@ export function App() {
   };
   const createNewPost = async (formData) => {
     //we're going to pass this function as a prop to the child comp form
-    console.log("contact submitted:", formData);
+    console.log("post submitted:", formData);
 
     try {
       const response = await fetch("/posts", {
@@ -160,7 +163,7 @@ export function App() {
           path="view"
           element={
             <ViewPost
-              findPost={findPost}
+              authorPosts={authorPosts}
               deletePost={deletePost}
               setIsReadPostOpen={setIsReadPostOpen}
               isReadPostOpen={isReadPostOpen}

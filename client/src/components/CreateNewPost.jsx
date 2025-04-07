@@ -1,28 +1,8 @@
-//To-do: abstract the content portion to be an update with the image 
-//When creating a post have a time out/loading to control the image time generating
-//disable button while image is generate to prevent too many calls
-//is there a better to handle this in the back end?
-//how to build a editor with the rich text editor 
-//may need to break up the process into multiple components 
+//To-do: 
+//conditional render image portion, send the data to the post route to update URL
+//have a button to view post or click home
 
 import { useReducer, useRef } from "react";
-import Editor, { 
-  BtnBold,
-  BtnBulletList,
-  BtnClearFormatting,
-  BtnItalic,
-  BtnLink,
-  BtnNumberedList,
-  BtnRedo,
-  BtnStrikeThrough,
-  BtnStyles,
-  BtnUnderline,
-  BtnUndo,
-  HtmlButton,
-  Separator,
-  Toolbar,
-} from 'react-simple-wysiwyg';
-
 
 const initialState = {
   author: "",
@@ -61,15 +41,14 @@ function CreateNewPost({ createNewPost }) {
       return;
     }
 
-      createNewPost(formState);
-      dispatchForm({
-        type: "Reset",
-      });
-      formRef.current.reset();
-    };
+    createNewPost(formState);
+    dispatchForm({
+      type: "Reset",
+    });
+    formRef.current.reset();
+  };
 
   function formChange(e) {
-
     dispatchForm({
       type: "FormInput",
       formInput: { name: e.target.name, value: e.target.value },
@@ -86,33 +65,11 @@ function CreateNewPost({ createNewPost }) {
         <label htmlFor="title">
           Title <span className="req">*</span>
         </label>
-        <input id="title" name="title" required />
+        <input id="title" type="text" name="title" required />
         <label htmlFor="content">
           content<span className="req">*</span>
         </label>
-        {/* <input id="content" type="text" name="content" required /> */}
-          <Editor >
-          <Toolbar>
-          <BtnUndo />
-            <BtnRedo />
-            <Separator />
-            <BtnBold />
-            <BtnItalic />
-            <BtnUnderline />
-            <BtnStrikeThrough />
-            <Separator />
-            <BtnNumberedList />
-            <BtnBulletList />
-            <Separator />
-            <BtnLink />
-            <BtnClearFormatting />
-            <HtmlButton />
-            <Separator />
-            <BtnStyles />
-          </Toolbar>
-          </Editor>
-        <label htmlFor="image">image</label>
-        <input id="image" type="text" name="image" />
+        <input id="content" type="text" name="content" className="content" required />
         <p>
           <span className="req">*</span> - Required field
         </p>
@@ -122,4 +79,4 @@ function CreateNewPost({ createNewPost }) {
   );
 }
 
-export default CreateNewPost
+export default CreateNewPost;
