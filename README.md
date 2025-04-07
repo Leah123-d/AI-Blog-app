@@ -74,7 +74,7 @@ To confirm the backend is connection navigate to the URL
 
 To confirm the databases are connected navigate to the URL to check the different tables 
 
-`````````localhost:3000/blog`````````
+`````````localhost:3000/posts`````````
 
 
 For Frontend
