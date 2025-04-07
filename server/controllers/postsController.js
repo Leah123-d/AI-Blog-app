@@ -114,7 +114,7 @@ export const getSocials = async(req, res) => {
 }
 
 export const generateANDSavePostImage = async (req, res) => {
-  const { id } = req.params;
+  // const { id } = req.params;
   const { content } = req.body;
   
   if(!content){

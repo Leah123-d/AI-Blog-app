@@ -103,7 +103,7 @@ export function App() {
     }
     try {
       const res = await fetch(`/posts/${findPost.id}/image`, {
-        method: "PUT",
+        method: "POST",
         headers: {
           "Content-Type": "application/json",
         },

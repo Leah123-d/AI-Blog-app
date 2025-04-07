@@ -1,9 +1,8 @@
 function Home () {
   return(
     <div className="homeContainer">
-      <h1>Welcome to my Blog!</h1>
-      <p>Where do you want to begin?</p>
-      <p> this page was inspired by.... </p>
+      <h1>Welcome to my Blog with AI generated images!</h1>
+      <p>This blog is place to post stories about my life! </p>
     </div>
   )
 }

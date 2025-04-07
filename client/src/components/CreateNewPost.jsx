@@ -64,13 +64,24 @@ function CreateNewPost({ createNewPost }) {
         </label>
         <input id="author" type="text" name="author" required />
         <label htmlFor="title">
-          Title <span className="req">*</span>
+          Title
         </label>
-        <input id="title" type="text" name="title" required />
+        <input id="title" type="text" name="title" />
         <label htmlFor="content">
           content<span className="req">*</span>
         </label>
         <input id="content" type="text" name="content" className="content" required />
+        <label htmlFor="favorite">
+          favorite
+        </label>
+        <label htmlFor="true">
+          yes
+        </label>
+        <input id="favorite" type="radio" name="favorite" className="favorite" value="true" />
+        <label htmlFor="true">
+          no
+        </label>
+        <input id="favorite" type="radio" name="favorite" className="favorite" value="false" />
         <p>
           <span className="req">*</span> - Required field
         </p>

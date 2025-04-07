@@ -1,8 +1,8 @@
 //to-do:
 //add display for socials, if column for socials is not null display the socials icon
 //can make if statements or swtich case for the different icons linked to the author's URLs
-//limit the delete to once every 5 hours? 
 //add loading state- animation with your AI image is generating 
+//handle whitespace trim completing form
 
 import { useNavigate } from "react-router-dom";
 
