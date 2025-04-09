@@ -1,8 +1,12 @@
-import {render, screen} from '@testing-library/react'
+import {render, screen, cleanup} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import Home from '../components/Home'
 
-test('loads and displays message', async () => {
+afterEach(() => {
+  cleanup()
+})
+
+test('loads and displays header and message', async () => {
   //ARRANGE 
 
   render(<Home />)
@@ -10,7 +14,9 @@ test('loads and displays message', async () => {
   //ACT
 
   await screen.findByRole('heading')
+  await screen.findByRole('paragraph')
 
   //ASSERT 
-  expect(screen.getByRole('heading')).toHaveTextContent('Welcome to my Blog!')
+  expect(screen.getByRole('heading')).toHaveTextContent('Welcome to my Blog with AI generated images!')
+  expect(screen.getByRole('paragraph')).toHaveTextContent('This blog is a place to post stories about my life!')
 })
