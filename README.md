@@ -67,7 +67,7 @@ Creating database tables
 2. run the following command in your terminal at the server folder level to create the project database tables 
 
 `````````
-psql -U your_user -d your_database -f dumpfile.sql
+psql -U your_user -d your_database -f db.sql
 `````````
 
 For Backend
