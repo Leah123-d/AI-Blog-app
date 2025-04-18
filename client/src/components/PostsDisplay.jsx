@@ -18,9 +18,10 @@ function PostsDisplay({ posts, fetchPosts, handleViewPost, fetchPostSearch, sear
         <form onSubmit={handleSubmit}>
         <label htmlFor="startDate">enter a date</label>
           <input
-					type="date" 
+					type="date"
+          aria-label="enter a date"
 					value={searchDate} 
-					id="date"
+					id="startDate"
 					onChange={handleSearchDate} />
           <button>search</button>
           <button onClick={handleSearchReset}>reset</button>
