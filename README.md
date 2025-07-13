@@ -1,6 +1,6 @@
 # AI Blog App! 
 
-I made this project to demonstrate the skils of buildings a PERN stack application incorporating AI. 
+I made this project to demonstrate the skills of building a PERN stack application incorporating AI. 
 
 ## Project Objective:
 
